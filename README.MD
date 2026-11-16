@@ -22,13 +22,13 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Install the Python dependencies:
+Install `arduino-cli` and the Python dependencies:
 
 ```bash
 make build
 ```
 
-Install and configure [`arduino-cli`](https://arduino.github.io/arduino-cli/latest/installation/) separately if you need to build or upload the Arduino firmware.
+If `arduino-cli` is not installed when you run the application, it will also prompt to install it using [`setup.sh`](setup.sh).
 
 ## Usage
 
@@ -42,18 +42,20 @@ The Makefile provides:
 
 | Command | Description |
 | --- | --- |
-| `make build` | Install the Python dependencies |
-| `make run` | Start the Python application |
+| `make build` | Install `arduino-cli` and Python dependencies |
+| `make run` | Start the Python application (`python3 main.py`) |
 
 ## Hardware and communication
 
-The computer communicates with the Arduino through a serial UART connection. Before running the application, verify the Arduino port and baud rate match the firmware configuration. The current Python configuration uses a baud rate of `112500`; the serial port still needs to be configured.
+The computer communicates with the Arduino through an asynchronous serial UART connection (`aioserial`). On startup, `serial_manager.py` verifies `arduino-cli` is available, automatically detects the connected Arduino's serial port via `arduino-cli board list`, and binds to it at a baud rate of `112500`. Verify that your Arduino firmware uses the same baud rate.
 
 ## Project layout
 
 | File | Purpose |
 | --- | --- |
-| [`main.py`](main.py) | Application configuration and entry point |
-| [`serial.py`](serial.py) | Serial communication wrapper |
+| [`main.py`](main.py) | Application entry point |
+| [`serial_manager.py`](serial_manager.py) | Dependency checks, Arduino port detection, and async serial wrapper |
+| [`Terminal_colors.py`](Terminal_colors.py) | ANSI color constants for terminal output |
+| [`setup.sh`](setup.sh) | Installer script for `arduino-cli` |
 | [`requirements.txt`](requirements.txt) | Python dependencies |
 | [`Makefile`](Makefile) | Build and run commands |
