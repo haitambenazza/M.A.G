@@ -1,4 +1,4 @@
-# Mouse-Controlled Robotic Arm
+# M.A.G
 
 A Python project for controlling a three-axis robotic arm from a computer mouse. The planned interface uses Pygame to display the arm's movement and communicates with an Arduino over a serial (UART) connection.
 
