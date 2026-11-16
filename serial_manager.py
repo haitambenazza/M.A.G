@@ -49,6 +49,7 @@ def get_arduinoboard():
         raise
     except Exception:
         print(f"{RED}No board found. please plug in Arduino board!{RESET}")
+        sys.exit(1)
 
 
 
