@@ -1,4 +1,4 @@
-# from serial_manager import board
+from serial_manager import board
 from shutil import which
 import subprocess
 import sys
@@ -23,3 +23,4 @@ def check_dependacy():
 
 if __name__ == "__main__":
     check_dependacy()
+    print(board)

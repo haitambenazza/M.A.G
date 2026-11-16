@@ -38,14 +38,14 @@ def get_arduinoboard():
 
 class Serial:
     def __init__(self, port: str, baud: int):
-        self.ser = aioserial.Aioserial(port=port, baudrate=baud)
+        self.ser = aioserial.AioSerial(port=port, baudrate=baud)
         self.ser_lock = asyncio.Lock()
-    
+        print(f"///initializing serial and binding to {port} with {baud}///")
+
     def sendcmd(self):
         pass
     def readcmd(self) -> str:
         return ""
 
 get_arduinoboard()
-print(PORT)                
-# board: Serial = Serial(PORT, BAUD)
+board: Serial = Serial(PORT, BAUD)
