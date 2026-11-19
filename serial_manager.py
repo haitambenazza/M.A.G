@@ -1,7 +1,7 @@
 import asyncio
 import sys
 import subprocess
-from Terminal_colors import GREEN, RED, RESET
+from macros import GREEN, RED, RESET
 from shutil import which
 from pathlib import Path
 
